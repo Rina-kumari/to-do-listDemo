@@ -7,16 +7,15 @@ interface DeleteProps {
   onDelete: () => void
 }
 
-const Delete: React.FC<DeleteProps> = ({ id, onDelete }) => {
+const Delete: React.FC<DeleteProps> = ({ onDelete }) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleDelete = async () => {
     try {
       setIsLoading(true)
-      // Since we're working with local state, we can just call onDelete directly
       onDelete()
-    } catch (error) {
-      console.error('Error deleting todo:', error)
+    } catch (err) {
+      console.error('Error deleting todo:', err)
     } finally {
       setIsLoading(false)
     }
