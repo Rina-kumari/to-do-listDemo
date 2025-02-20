@@ -53,7 +53,7 @@ export default function TodoApp() {
               onClick={handleAddTodo}
               className="bg-white text-vibrant-purple hover:bg-vibrant-yellow hover:text-white transition-colors"
             >
-              Add ToDo
+              Add
             </Button>
           </div>
         </div>
