@@ -28,22 +28,21 @@ export default function TodoApp() {
         .from('todos')
         .select('id, task_name, created_at')
         .order('created_at', { ascending: false })
-
+      
       if (error) {
-        throw error
+        setError(error.message)
+        return
       }
-
-      if (data) {
-        const formattedTodos: Todo[] = data.map(todo => ({
-          id: todo.id,
-          text: todo.task_name,
-          completed: false // Default value since the field doesn't exist yet
-        }))
-        setTodos(formattedTodos)
-      }
-    } catch (error) {
-      console.error('Error fetching todos:', error)
-      setError('Failed to fetch todos')
+      
+      const formattedTodos = data.map((todo: any) => ({
+        id: todo.id,
+        text: todo.task_name,
+        completed: false
+      }))
+      
+      setTodos(formattedTodos)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
     }
   }
 
