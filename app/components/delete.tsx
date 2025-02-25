@@ -4,16 +4,16 @@ import { useState } from 'react'
 
 interface DeleteProps {
   id: string
-  onDelete: () => void
+  onDelete: (id: string) => void
 }
 
-const Delete: React.FC<DeleteProps> = ({ onDelete }) => {
+const Delete: React.FC<DeleteProps> = ({ id, onDelete }) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleDelete = async () => {
     try {
       setIsLoading(true)
-      onDelete()
+      await onDelete(id)
     } catch (err) {
       console.error('Error deleting todo:', err)
     } finally {
